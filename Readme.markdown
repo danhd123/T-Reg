@@ -1,8 +1,5 @@
-T-Reg
-=====
-
-A By-Example Regular Expression Generator
------------------------------------------
+T-Reg: A By-Example Regular Expression Generator
+================================================
 
 Version 0.000000000001
 
