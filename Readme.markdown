@@ -3,9 +3,10 @@ T-Reg: A By-Example Regular Expression Generator
 
 Version 0.000000000001
 
-Created by [Steve Johnson](http://www.steveasleep.com) (steve.johnson.public@gmail.com)
+Created by [Steve Johnson](http://www.steveasleep.com)  
+steve.johnson.public@gmail.com
 
-Tested with Python 2.7
+Tested with Python 2.7  
 Should work with Python 2.6 (and 2.5 with minor modifications)
 
 What It Does
