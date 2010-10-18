@@ -1,0 +1,151 @@
+" Basics {
+   set nocompatible " explicitly get out of vi-compatible mode 
+   "set background=dark " we plan to use a dark background
+   syntax on " syntax highlighting on
+" }
+
+" General {
+   filetype plugin indent on " load filetype plugins and indent settings
+   "set autochdir " always switch to the current directory of the file you are editing
+   set backspace=indent,eol,start " make backspace a little more flexible
+   "set backup " make backup files
+   "set backupdir=~/.vim/backup " where to put backup files
+   "set clipboard+=unnamed " share windows clipboard
+   "set directory=~/.vim/tmp " directory to place swap files in
+   set fileformats=unix,dos,mac " support all three, in this order
+   set hidden " you can change buffers without saving
+   set iskeyword+=_,$,@,%,# " none of these are word dividers
+   set mouse=a " use mouse everywhere
+   set noerrorbells " don't make noise
+   set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
+   set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.swp,*.jpg,*.gif,*.png " ignore these
+   set wildmenu " turn on command line completion
+   set wildmode=list:longest " turn on wild menu with very large list
+" }
+
+" Vim UI {
+   colorscheme torte " default for console (over-ridden when GUI used)
+   "set cursorcolumn " highlight the current column
+   set cursorline " highlight current line
+   set incsearch " BUT do highlight as you type you search phrase
+   "set laststatus=2 " always show the status line
+   set lazyredraw " do not redraw while running macros
+   set linespace=0 " don't insert any extra pixel lines betweens rows
+   set list " we do what to show tabs, to ensure we get them out of my files
+   set listchars=tab:>-,trail:- " show tabs and trailing whitespace
+   set matchtime=5 " how many tenths of a second to blink matching brackets for
+   set nohlsearch " do not highlight searched for phrases
+   set nostartofline " leave my cursor where it was
+   set novisualbell " don't blink
+   set number " turn on line numbers
+   set numberwidth=5 " We are good up to 99999 lines
+   set report=0 " tell us when anything is changed via :...
+   set ruler " Always show current positions along the bottom
+   set scrolloff=4 " Keep 5 lines (top/bottom) for scope
+   set shortmess=atI " shortens messages to avoid 'press a key' prompt
+   set showcmd " show the command being typed
+   set showmatch " show matching brackets
+   set sidescrolloff=4 " Keep 5 lines at the size
+   " statusline demo: ~\myfile[+] [FORMAT=format] [TYPE=type] [ASCII=000] [HEX=00] [POS=0000,0000][00%] [LEN=000]
+   "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" }
+
+" Text Formatting/Layout {
+   set completeopt=menu,longest " improve the way autocomplete works
+   set expandtab " no real tabs please!
+   set formatoptions=rq " Automatically insert comment leader on return, and let gq work
+   set ignorecase " case insensitive by default
+   set nowrap " do not wrap line
+   set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
+   set smartcase " if there are caps, go case-sensitive
+   " Indent Related {
+      set shiftwidth=4 " unify
+      set softtabstop=4 " unify
+      set tabstop=4 " real tabs should be 4, but they will show with set list on
+   " }
+" }
+
+" Folding {
+   set foldenable " Turn on folding
+   set foldmarker={,} " Fold C style code (useful with high foldlevel)
+   set foldmethod=marker " Fold on the marker
+   set foldlevel=100 " Don't autofold anything (but I can still fold manually)
+   set foldopen=block,hor,mark,percent,quickfix,tag " what movements to open folds on
+   function SimpleFoldText() " {
+      return getline(v:foldstart).' '
+   endfunction " }
+  set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
+" }
+
+" Plugin Settings {
+   let b:match_ignorecase = 1 " case is stupid
+   let perl_extended_vars=1 " highlight advanced perl vars inside strings
+
+   " TagList Settings {
+      let Tlist_Auto_Open=0 " let the tag list open automagically
+      let Tlist_Compact_Format = 1 " show small meny
+      let Tlist_Ctags_Cmd = 'ctags' " location of ctags
+      let Tlist_Enable_Fold_Column = 0 " do show folding tree
+      let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
+      let Tlist_File_Fold_Auto_Close = 1 " fold closed other trees
+      let Tlist_Sort_Type = "name" " order by 
+      let Tlist_Use_Right_Window = 1 " split to the right side of the screen
+      let Tlist_WinWidth = 40 " 40 cols wide, so i can (almost always) read my functions
+      " Langauge Specifics {
+         let tlist_aspjscript_settings = 'asp;f:function;c:class' " functions/classes
+         let tlist_aspvbs_settings = 'asp;f:function;s:sub' " functions/subs
+         let tlist_php_settings = 'php;c:class;d:constant;f:function' " no variables
+         let tlist_vb_settings = 'asp;f:function;c:class' " functions/classes
+      " }
+   " }
+" }
+
+" Mappings {
+   map <F12> ggVGg?
+   noremap <S-space> <C-b>
+   noremap <space> <C-f>
+
+   " Make Arrow Keys Useful {
+   "   map <down> <ESC>:bn<RETURN> 
+   "   map <left> <ESC>:NERDTreeToggle<RETURN>
+   "   map <right> <ESC>:Tlist<RETURN>
+   "   map <up> <ESC>:bp<RETURN>
+   " }
+" }
+
+" Autocommands {
+   au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2 " ruby standard 2 spaces, always
+   au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 " ...
+   au BufRead,BufNewFile *.rb,*.rhtml set tabstop=2 " ...
+   " Notes {
+      " I consider .notes files special, and handle them differently
+      au BufRead,BufNewFile *.notes set foldlevel=1
+      au BufRead,BufNewFile *.notes set foldmethod=indent
+      au BufRead,BufNewFile *.notes set foldtext=foldtext()
+      au BufRead,BufNewFile *.notes set listchars=tab:\ \ 
+      au BufRead,BufNewFile *.notes set noexpandtab
+      au BufRead,BufNewFile *.notes set shiftwidth=1
+      au BufRead,BufNewFile *.notes set softtabstop=1
+      au BufRead,BufNewFile *.notes set syntax=notes
+      au BufRead,BufNewFile *.notes set tabstop=1
+   " }
+" }
+
+" GUI Settings {
+if has("gui")
+   " Basics {
+      colorscheme macvim " my color scheme (only works in GUI)
+      set columns=150 " perfect size for me
+      "set guifont=Consolas:h12 " My favorite font
+      "set guioptions=c " use simple dialogs rather than pop-ups
+      set lines=50 " perfect size for me
+      set mousehide " hide the mouse cursor when typing
+   " }
+
+   " Font Switching Binds {
+      map <F10> <ESC>:set guifont=Consolas:h12<CR>
+      map <F11> <ESC>:set guifont=Consolas:h16<CR>
+      map <F12> <ESC>:set guifont=Consolas:h20<CR>
+   " }
+endif
+" }
