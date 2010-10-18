@@ -3,8 +3,10 @@ import re
 SPECIAL = ".*[]+^$()\\"
 SUPERSPECIAL = "]"
 
-digit = re.compile(r'^\d+$')
-word = re.compile(r'^\w+$')
+regex_priority = [
+    (re.compile(r'^\d+$'), r'(\d+)'),
+    (re.compile(r'^\w+$'), r'(\w+)'),
+]
 
 def escaped(string):
     chars = []
@@ -27,8 +29,7 @@ def make_group(string):
 def char_set_to_smart_group(string):
     if len(string) < 1:
         return r''
-    if digit.match(string):
-        return r'(\d+)'
-    if word.match(string):
-        return r'(\w+)'
+    for regex, output in regex_priority:
+        if regex.match(string):
+            return output
     return r'(%s+)' % make_group(string)
