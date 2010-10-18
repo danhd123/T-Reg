@@ -1,12 +1,10 @@
-=====
 T-Reg
 =====
------------------------------------------
+
 A By-Example Regular Expression Generator
 -----------------------------------------
-----------------------
+
 Version 0.000000000001
-----------------------
 
 Created by Steve Johnson
 steve.johnson.public@gmail.com
@@ -23,7 +21,6 @@ T-Reg attempts to generate useful regular expressions from newline-delimited tex
 Usage
 =====
 
-.. sourcecode:: sh
     python treg.py <file name>
 
 Planned features
@@ -36,6 +33,7 @@ How It Works
 ============
 
 The current algorithm is stupidly simple:
+
 * Generate a diff between each adjacent pair of lines
 * For each matching sequence, append an escaped string
 * For each pair of nonmatching sequences, append a capture group containing all characters found in both nonmatching sequences
