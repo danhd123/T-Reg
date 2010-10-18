@@ -14,8 +14,8 @@ What It Does
 
 T-Reg attempts to generate useful regular expressions from newline-delimited text files. For example, this input:
 
-  item 1: bananas
-  item 2: carrots
+    item 1: bananas
+    item 2: carrots
 
 produces the regular expression ``^item (\d+): (\w+)a(\w+)s$``. (This is extremely early-stage output, and ``n`` strings will produce ``n-1`` regular expressions.)
 
