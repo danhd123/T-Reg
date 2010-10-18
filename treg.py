@@ -4,7 +4,7 @@ import collections
 
 import retools
 
-class Xeger(object):
+class TReg(object):
     """Find regexes matching sets of sequences"""
     def __init__(self, sequences):
         self.sequences = sequences
@@ -48,6 +48,6 @@ class Xeger(object):
 
 if __name__ == '__main__':
     with open(sys.argv[1], 'r') as f:
-        xe = Xeger(f.readlines())
-        for r in xe.regexes():
+        tr = TReg(f.readlines())
+        for r in tr.regexes():
             print r

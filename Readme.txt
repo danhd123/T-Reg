@@ -1,4 +1,4 @@
-Xeger: A By-Example Regular Expression Generator
+T-Reg: A By-Example Regular Expression Generator
 ================================================
 
 Version 0.000000000001
@@ -13,12 +13,12 @@ Should work with Python 2.6 (and 2.5 with minor modifications)
 What It Does
 ============
 
-Xeger attempts to generate useful regular expressions from newline-delimited text files.
+T-Reg attempts to generate useful regular expressions from newline-delimited text files.
 
 Usage
 =====
 
-python xeger.py <file name>
+python treg.py <file name>
 
 Planned features
 ================
