@@ -12,5 +12,5 @@ class Xeger(object):
 
 if __name__ == '__main__':
     with open(sys.argv[1], 'r') as f:
-        xe = Xeger(f.lines())
+        xe = Xeger(f.readlines())
         print '\n'.join(xe.regexes())
